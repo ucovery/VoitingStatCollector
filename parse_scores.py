@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import numpy as np
 import time
 
+#Парсер статистики выборов в краснодарском крае
 chrome_driver_path = 'E:\\chromedriver_win32\chromedriver.exe'
 base_url='http://www.krasnodar.vybory.izbirkom.ru/region/region/krasnodar?action=show&root=1&tvd=4234220141772&vrn=4234220141768&region=23&global=&sub_region=23&prver=2&pronetvd=1&vibid=4234220141772&type=381'
 
@@ -17,19 +18,19 @@ scores_array = {}
 
 # Парсим структуру
 def parseStructure(tblnum):
-    b = 0
+    flag_iterator = 0
     uic_values = []
     result_values = []
     mytbl = table[tblnum]
     rows = mytbl.findChildren(['th', 'tr'])
     for row in rows:
-        b += 1
-        if b == 21:
+        flag_iterator += 1
+        if flag_iterator == 21:
             cells = row.findChildren('td')
             for cell in cells:
                 value = cell.text
                 uic_values.append(value)
-        if b == 39:
+        if flag_iterator == 39:
             cells = row.findChildren('td')
             for cell in cells:
                 value = cell.text

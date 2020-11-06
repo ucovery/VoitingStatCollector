@@ -11,7 +11,8 @@ viewers_stat = {}
 for item in viewer_stat:
     viewers_stat[item.split("№")[1]] = viewer_stat[item]
 
-new_dict = {} # Словарь для агрегации итоговых данных
+# Словарь для агрегации итоговых данных
+new_dict = {}
 for item in cprf_score:
     if (item in cprf_score) and (item in viewers_stat):
         temp_dict = []
